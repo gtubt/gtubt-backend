@@ -21,4 +21,4 @@ class EventViewSet(viewsets.ModelViewSet):
         self.service.update_event(event, **data)
 
     def perform_destroy(self, instance):
-        raise MethodNotAllowed()
+        raise MethodNotAllowed(method="DELETE")

@@ -1,9 +1,9 @@
 from rest_framework import viewsets
 from rest_framework.exceptions import MethodNotAllowed
+from rest_framework.permissions import IsAuthenticated
 
 from app.tickets.models import Ticket
-from app.tickets.resources.serializers import (TicketDetailedSerializer,
-                                               TicketSerializer)
+from app.tickets.resources.serializers import TicketDetailedSerializer, TicketSerializer
 from app.tickets.service import TicketService
 from core.utils.viewsets import MultiSerializerViewSetMixin
 
@@ -16,6 +16,7 @@ class TicketViewSet(MultiSerializerViewSetMixin, viewsets.ModelViewSet):
         "detailed": TicketDetailedSerializer,
         "detailed-list": TicketDetailedSerializer,
     }
+    permission_classes = [IsAuthenticated]
 
     def perform_create(self, serializer):
         serializer.is_valid()

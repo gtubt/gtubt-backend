@@ -37,7 +37,14 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "django_extensions",
     "rest_framework",
+    "rest_framework.authtoken",
+    "dj_rest_auth",
+    "django.contrib.sites",
+    "allauth",
+    "allauth.account",
+    "dj_rest_auth.registration",
     "app.api",
     "app.events",
     "app.news",
@@ -131,9 +138,35 @@ STATIC_URL = "/static/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
+AUTH_USER_MODEL = "users.User"
+
 REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework.authentication.TokenAuthentication",
+    ],
     "DEFAULT_PERMISSION_CLASSES": [
         "rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly"
     ],
     "EXCEPTION_HANDLER": "app.api.exceptions.exception_handler",
+    "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.LimitOffsetPagination",
+    "PAGE_SIZE": 10,
 }
+
+REST_AUTH_REGISTER_SERIALIZERS = {
+    "REGISTER_SERIALIZER": "app.users.resources.serializers.RegisterSerializer"
+}
+
+SITE_ID = 1
+
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_PORT = 587
+EMAIL_HOST_USER = "gtubt@gtubt.com"
+EMAIL_HOST_PASSWORD = "<password>"
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = "gtubt@gtubt.com"
+
+try:
+    from .settings_local import *
+except ImportError:
+    pass

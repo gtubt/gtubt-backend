@@ -33,6 +33,6 @@ class MultiSerializerViewSetMixin(object):
     def detailed(self, request, *args, **kwargs):
         return self.retrieve(request, *args, **kwargs)
 
-    @action(methods=["get"], url_path="detailed-list")
+    @action(methods=["get"], detail=False, url_path="detailed-list")
     def detailed_list(self, request, *args, **kwargs):
         return self.list(request, *args, **kwargs)
