@@ -4,12 +4,14 @@ from rest_framework.exceptions import MethodNotAllowed
 from app.events.models import Event
 from app.events.resources.serializers import EventSerializer
 from app.events.service import EventService
+from core.utils.permissions import IsAdminOrReadOnly
 
 
 class EventViewSet(viewsets.ModelViewSet):
     serializer_class = EventSerializer
     queryset = Event.objects.all()
     service = EventService()
+    permission_classes = [IsAdminOrReadOnly]
 
     def perform_create(self, serializer):
         data = serializer.validated_data

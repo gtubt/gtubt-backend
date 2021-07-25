@@ -3,7 +3,8 @@ from rest_framework.exceptions import MethodNotAllowed
 from rest_framework.permissions import IsAuthenticated
 
 from app.tickets.models import Ticket
-from app.tickets.resources.serializers import TicketDetailedSerializer, TicketSerializer
+from app.tickets.resources.serializers import (TicketDetailedSerializer,
+                                               TicketSerializer)
 from app.tickets.service import TicketService
 from core.utils.viewsets import MultiSerializerViewSetMixin
 

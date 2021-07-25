@@ -1,6 +1,5 @@
-from dj_rest_auth.registration.serializers import (
-    RegisterSerializer as DefaultRegisterSerializer,
-)
+from dj_rest_auth.registration.serializers import \
+    RegisterSerializer as DefaultRegisterSerializer
 from rest_framework import serializers
 
 from app.users.models import User
