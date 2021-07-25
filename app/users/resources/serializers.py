@@ -7,7 +7,7 @@ from app.users.models import User
 
 
 class UserSerializer(serializers.ModelSerializer):
-    password = serializers.CharField(write_only=True, max_length=255)
+    password = serializers.CharField(write_only=True, max_length=255, required=False)
 
     class Meta:
         model = User

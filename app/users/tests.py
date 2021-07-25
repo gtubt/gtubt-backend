@@ -21,6 +21,7 @@ class UserServiceTestCase(TestCase):
             "photo_url": "https://photourl.com",
             "is_active": True,
             "phone": "5555555555",
+            "password": "passwordTest",
         }
 
     def test_create_user(self):
@@ -46,9 +47,8 @@ class UserServiceTestCase(TestCase):
 
         data = self.serializer(user).data
         update_data = {"year": 2, "department": "eee"}
-        data.update(**update_data)
 
-        serializer = self.serializer(data=data)
+        serializer = self.serializer(instance=user, data=data)
         self.assertTrue(serializer.is_valid())
         update_user = self.service.update_user(user, **update_data)
         self.assertEqual(update_data["department"], update_user.department)
