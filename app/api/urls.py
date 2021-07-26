@@ -2,6 +2,7 @@ from django.urls import include, path
 from rest_framework import routers
 
 from app.events.resources.views import EventViewSet
+from app.news.resources.views import NewsViewSet
 from app.tickets.resources.views import TicketViewSet
 from app.users.resources.views import UserViewSet
 
@@ -9,6 +10,7 @@ router_v1 = routers.SimpleRouter()
 router_v1.register(r"users", UserViewSet)
 router_v1.register(r"tickets", TicketViewSet)
 router_v1.register(r"events", EventViewSet)
+router_v1.register(r"news", NewsViewSet)
 
 urlpatterns = [
     path("v1/", include(router_v1.urls)),
