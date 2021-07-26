@@ -22,7 +22,7 @@ class EventService(object):
                 cover_image_url=cover_image_url,
                 date=date,
             )
-            raise exceptions.EventDuplicatedFieldException
+            raise exceptions.EventDuplicatedFieldException()
         except Event.DoesNotExist:
             pass
 
@@ -47,13 +47,13 @@ class EventService(object):
         date = kwargs.get("date", event.date)
 
         try:
-            Event.objects.get(
+            Event.objects.exclude(id=event.id).get(
                 title=title,
                 description=description,
                 cover_image_url=cover_image_url,
                 date=date,
             )
-            raise exceptions.EventDuplicatedFieldException
+            raise exceptions.EventDuplicatedFieldException()
         except Event.DoesNotExist:
             pass
 
