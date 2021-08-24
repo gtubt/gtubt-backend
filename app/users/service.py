@@ -1,3 +1,8 @@
+from io import BytesIO
+from typing import Optional, Union
+
+from django.core.files import File
+from django.core.files.images import ImageFile
 from django.db.transaction import atomic
 
 from app.users import exceptions
@@ -13,8 +18,8 @@ class UserService(object):
         department: Department.choices,
         email: str,
         student_id: str,
-        photo_url: str,
         phone: str,
+        photo: Optional[Union[File, str]] = None,
         **kwargs: dict,
     ) -> User:
         try:
@@ -29,10 +34,16 @@ class UserService(object):
             department=department,
             email=email,
             student_id=student_id,
-            photo_url=photo_url,
             phone=phone,
             **kwargs,
         )
+
+        if isinstance(photo, File):
+            user.photo = photo
+        elif photo:
+            avatar = ImageFile(BytesIO(photo), "photo")
+            user.photo = avatar
+
         with atomic():
             user.save()
         return user
@@ -41,6 +52,7 @@ class UserService(object):
     def update_user(user: User, **kwargs: dict) -> User:
         kwargs.pop("id", None)
         new_email = kwargs.pop("email", None)
+        avatar = kwargs.pop("photo", None)
         try:
             User.objects.exclude(email=user.email).get(email=new_email)
             raise exceptions.UserDuplicatedFieldException()
@@ -49,6 +61,12 @@ class UserService(object):
 
         for key, value in kwargs.items():
             setattr(user, key, value)
+
+        if isinstance(avatar, File):
+            user.photo = avatar
+        elif avatar:
+            avatar = ImageFile(BytesIO(avatar), "photo")
+            user.photo = avatar
 
         with atomic():
             user.save(update_fields=kwargs.keys())
