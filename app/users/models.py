@@ -15,7 +15,7 @@ class User(AbstractUser, StarterModel):
     year = models.PositiveIntegerField("Year", default=0)
     email = models.EmailField("Email", db_index=True, unique=True)
     student_id = models.CharField("Student ID", max_length=255)
-    photo_url = models.URLField("Photo")
+    photo = models.ImageField(blank=True, null=True)
     phone = models.CharField("Phone Number", max_length=128)
     is_active = models.BooleanField("Active", default=True)
 
