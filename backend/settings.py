@@ -157,6 +157,10 @@ REST_AUTH_REGISTER_SERIALIZERS = {
     "REGISTER_SERIALIZER": "app.users.resources.serializers.RegisterSerializer"
 }
 
+REST_AUTH_SERIALIZERS = {
+    "USER_DETAILS_SERIALIZER": "app.users.resources.serializers.UserSerializer"
+}
+
 SITE_ID = 1
 
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
