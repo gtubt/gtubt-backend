@@ -1,0 +1,25 @@
+version: "3.9"
+
+services:
+  db:
+    image: docker.io/bitnami/postgresql:11
+    volumes:
+      - postgresql_data:/bitnami/postgresql
+    environment:
+      - POSTGRESQL_DATABASE=gtubt
+      - POSTGRESQL_USERNAME=postgres
+      - POSTGRESQL_PASSWORD=postgres
+  web:
+    build: .
+    volumes:
+      - .:/usr/src/app
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    depends_on:
+      - db
+
+volumes:
+  postgresql_data:
+    driver: local
