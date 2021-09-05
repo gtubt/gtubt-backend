@@ -1,5 +1,7 @@
 # INSTALLATION GUIDE
-This installation guide is for Debian based Linux distributions.
+You can start project and a database instance with `docker-compose up -d`.
+
+This installation guide is for Debian based Linux distributions for python development.
 ## REQUIREMENTS
 - Python 3.8
 - PostgreSQL
