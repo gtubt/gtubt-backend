@@ -25,9 +25,9 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
-    - name: Run Tests
-      run: |
-        python manage.py test
+    # - name: Run Tests
+    #   run: |
+    #     python manage.py test
     - name: Python Blacken
       # You may pin to the exact commit or the version.
       # uses: piotrpawlaczek/python-blacken@00da49d5262ea8408aa006873de629fef9fc9dd1
