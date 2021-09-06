@@ -34,4 +34,4 @@ jobs:
         # File or directory to run black on.
         # path: # optional, default is .
         line-length: 500
-        only-check: 'no'
+        only-check: 'yes'
