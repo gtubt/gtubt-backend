@@ -1,5 +1,12 @@
 #!/bin/sh
 
+# Pass arguments to manage.py and exit (ex. makemigrations, etc)
+if [ $# -gt 0 ]
+  then
+    python manage.py "$@"
+    exit
+fi
+
 # Apply database migrations
 echo "Apply database migrations"
 python manage.py migrate
