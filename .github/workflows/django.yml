@@ -29,3 +29,6 @@ jobs:
       run: |
         python -m black . --check
         isort . --check-only
+    - name: Run Tests
+      run: |
+        python manage.py test
