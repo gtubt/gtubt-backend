@@ -6,6 +6,12 @@ on:
   pull_request:
     branches: [ development ]
 
+env:
+  registry: my_registry_name
+  # Not sure these are actually being passed down to rails, set them as the default in database.yml
+  DB_USERNAME: postgres
+  DB_PASSWORD: postgres
+
 jobs:
   build:
 
