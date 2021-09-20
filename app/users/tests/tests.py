@@ -15,7 +15,7 @@ class UserServiceTestCase(TestCase):
 
     def setUp(self):
         self.data = {
-            "name": "first_name",
+            "first_name": "first_name",
             "last_name": "last_name",
             "department": "cse",
             "year": 1,

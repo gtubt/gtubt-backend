@@ -8,7 +8,7 @@ from app.users.models import User
 
 class UserSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True, max_length=255, required=False)
-    photo = serializers.ImageField(required=False)
+    photo = serializers.ImageField(required=False, allow_null=True)
 
     class Meta:
         model = User
