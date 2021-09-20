@@ -25,7 +25,7 @@ class UserSerializer(serializers.ModelSerializer):
             "is_active",
             "password",
             "is_accept_kvkk",
-            "is_accept_user_agreement"
+            "is_accept_user_agreement",
         ]
 
 
