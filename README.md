@@ -1,5 +1,10 @@
-# INSTALLATION GUIDE
-This installation guide is for Debian based Linux distributions.
+# Usage with _Docker_
+You can start project and a database instance with `docker-compose up -d`.
+
+To use manage.py, use following `docker-compose run web makemigrations`. This will create a runner container, do its work and exit.
+
+# Installation Guide
+This installation guide is for Debian based Linux distributions for python development.
 ## REQUIREMENTS
 - Python 3.8
 - PostgreSQL
