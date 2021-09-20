@@ -7,10 +7,8 @@ on:
     branches: [ development ]
 
 env:
-  registry: my_registry_name
-  # Not sure these are actually being passed down to rails, set them as the default in database.yml
-  DB_USERNAME: postgres
-  DB_PASSWORD: postgres
+  DATABASE_USER: postgres
+  DATABASE_PASSWORD: postgres
 
 jobs:
   build:
@@ -31,7 +29,11 @@ jobs:
         ports:
           - 5432:5432
         # needed because the postgres container does not provide a healthcheck
-        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
 
     steps:
     - uses: actions/checkout@v2
@@ -50,5 +52,8 @@ jobs:
     - name: psycopg2 prerequisites
       run: sudo apt-get install libpq-dev
     - name: Run Tests
+      env:
+        POSTGRES_HOST: postgres
+        POSTGRES_PORT: 5432
       run: |
         python manage.py test
