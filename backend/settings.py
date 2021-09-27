@@ -137,7 +137,7 @@ USE_TZ = True
 
 STATIC_URL = "/static/"
 STATICFILES_DIRS = [
-    "/opt/data/assets"
+    "/opt/data/static"
 ]
 STATIC_ROOT = "/opt/data/assets"
 
