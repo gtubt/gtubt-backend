@@ -25,8 +25,7 @@ SECRET_KEY = "django-insecure-6@9ud2%^cao2yi5m1u2=%pxns^m)#0dcu%*8%2@k6b%o+fciz$
 
 DEBUG = int(os.environ.get("DEBUG", default=0))
 
-
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [host for host in os.environ.get("ALLOWED_HOSTS", "localhost").split(',')]
 
 
 # Application definition
