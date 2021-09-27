@@ -9,8 +9,8 @@ StartLimitBurst=5
 Restart=on-failure
 RestartSec=5s
 WorkingDirectory=/opt/repo/gtu/gtubt-backend/
-ExecStart=/usr/bin/docker-compose -f /opt/repo/gtu/gtubt-backend/docker-compose.yml -f /opt/repo/gtu/gtubt-backend/docker-compose.prod.yml -p gtubt up
-ExecStop=/usr/bin/docker-compose -f /opt/repo/gtu/gtubt-backend/docker-compose.yml -f /opt/repo/gtu/gtubt-backend/docker-compose.prod.yml -p gtubt down
+ExecStart=/usr/local/bin/docker-compose -f /opt/repo/gtu/gtubt-backend/docker-compose.yml -f /opt/repo/gtu/gtubt-backend/docker-compose.prod.yml -p gtubt up
+ExecStop=/usr/local/bin/docker-compose -f /opt/repo/gtu/gtubt-backend/docker-compose.yml -f /opt/repo/gtu/gtubt-backend/docker-compose.prod.yml -p gtubt down
 
 [Install]
 WantedBy=multi-user.target
