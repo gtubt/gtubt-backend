@@ -20,3 +20,5 @@ services:
     volumes:
       - ./nginx-block.conf:/opt/bitnami/nginx/conf/server_blocks/gtubt-backend.conf:ro
       - /var/log/gtubt-backend/:/opt/bitnami/nginx/logs/
+    depends_on:
+      - web
