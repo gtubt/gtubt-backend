@@ -18,7 +18,8 @@ urlpatterns = [
     path("v1/auth/", include("dj_rest_auth.urls")),
     path("v1/auth/registration/", include("dj_rest_auth.registration.urls")),
 
-    re_path(r"^password-reset/confirm/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$",  # NoQA
+    re_path(r"^password-reset/confirm/(?P<uidb64>[0-9]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,48})/$",  # NoQA
             TemplateView.as_view(template_name="password_reset_confirm.html"),
             name='password_reset_confirm'),
+    path("account/", include("allauth.urls")),
 ]
