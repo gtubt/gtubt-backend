@@ -26,10 +26,7 @@ class EventServiceTestCase(TestCase):
 
     def test_update_event(self):
         event = baker.make("events.Event", title="test_title")
-        data = {
-            "title": "test_title_update",
-            "description": "test_description_update",
-        }
+        data = {"title": "test_title_update", "description": "test_description_update"}
         updated_event = self.service.update_event(event=event, **data)
         self.assertEqual(updated_event.title, data["title"])
         self.assertEqual(updated_event.description, data["description"])

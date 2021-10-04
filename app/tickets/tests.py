@@ -18,10 +18,7 @@ class TicketTestCase(TestCase):
         self.event = baker.make("events.Event", title="Event Title")
 
     def test_create_ticket(self):
-        data = {
-            "user": self.user.id,
-            "event": self.event.id,
-        }
+        data = {"user": self.user.id, "event": self.event.id}
 
         serializer = self.serializer(data=data)
         self.assertTrue(serializer.is_valid())
@@ -43,10 +40,7 @@ class TicketTestCase(TestCase):
         self.assertTrue(event.exists())
 
     def test_create_test_with_already_exist(self):
-        data = {
-            "user": self.user.id,
-            "event": self.event.id,
-        }
+        data = {"user": self.user.id, "event": self.event.id}
 
         serializer = self.serializer(data=data)
         self.assertTrue(serializer.is_valid())
