@@ -21,5 +21,5 @@ urlpatterns = [
     re_path(r"^password-reset/confirm/(?P<uidb64>[0-9]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,48})/$",  # NoQA
             TemplateView.as_view(template_name="password_reset_confirm.html"),
             name='password_reset_confirm'),
-    path("account/", include("allauth.urls")),
+    path("v1/auth/allauth/", include("app.user_account.urls")),
 ]
