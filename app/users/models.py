@@ -19,7 +19,7 @@ class User(AbstractUser, StarterModel):
     phone = models.CharField("Phone Number", max_length=128)
     is_active = models.BooleanField("Active", default=True)
     is_accept_kvkk = models.BooleanField("KVKK", default=False)
-    is_accept_user_agreement = models.BooleanField('User Agreement', default=False)
+    is_accept_user_agreement = models.BooleanField("User Agreement", default=False)
 
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []

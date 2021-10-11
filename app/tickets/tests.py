@@ -14,7 +14,7 @@ class TicketTestCase(TestCase):
     serializer = TicketSerializer
 
     def setUp(self) -> None:
-        self.user = baker.make("users.User", name="Özlem", last_name="Türeci")
+        self.user = baker.make("users.User", first_name="Özlem", last_name="Türeci")
         self.event = baker.make("events.Event", title="Event Title")
 
     def test_create_ticket(self):
@@ -26,7 +26,7 @@ class TicketTestCase(TestCase):
         serializer = self.serializer(data=data)
         self.assertTrue(serializer.is_valid())
         ticket = self.service.create_ticket(**serializer.validated_data)
-        self.assertEqual(ticket.user.name, self.user.name)
+        self.assertEqual(ticket.user.first_name, self.user.first_name)
         self.assertEqual(ticket.event.title, self.event.title)
 
     def test_delete_ticket(self):
@@ -51,7 +51,7 @@ class TicketTestCase(TestCase):
         serializer = self.serializer(data=data)
         self.assertTrue(serializer.is_valid())
         ticket = self.service.create_ticket(**serializer.validated_data)
-        self.assertEqual(ticket.user.name, self.user.name)
+        self.assertEqual(ticket.user.first_name, self.user.first_name)
         self.assertEqual(ticket.event.title, self.event.title)
 
         with self.assertRaises(TicketAlreadyExist):

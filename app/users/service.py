@@ -13,7 +13,7 @@ from app.users.models import User
 class UserService(object):
     @staticmethod
     def create_user(
-        name: str,
+        first_name: str,
         last_name: str,
         department: Department.choices,
         email: str,
@@ -29,7 +29,7 @@ class UserService(object):
             pass
 
         user = User(
-            name=name,
+            first_name=first_name,
             last_name=last_name,
             department=department,
             email=email,
