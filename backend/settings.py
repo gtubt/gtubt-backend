@@ -16,7 +16,6 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
@@ -27,7 +26,6 @@ SECRET_KEY = "django-insecure-6@9ud2%^cao2yi5m1u2=%pxns^m)#0dcu%*8%2@k6b%o+fciz$
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -84,7 +82,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "backend.wsgi.application"
 
-
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
@@ -98,7 +95,6 @@ DATABASES = {
         "PORT": os.getenv("DATABASE_PORT", 5432),
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -118,7 +114,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
@@ -131,7 +126,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
@@ -164,6 +158,44 @@ REST_AUTH_REGISTER_SERIALIZERS = {
 REST_AUTH_SERIALIZERS = {
     "USER_DETAILS_SERIALIZER": "app.users.resources.serializers.UserSerializer"
 }
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "full": {
+            "format": "{levelname} - {asctime} - {pathname} - {funcName} - {process:d} - {thread:d} - {message}",
+            "style": "{",
+        },
+    },
+    "handlers": {
+        "file": {
+            "class": "logging.handlers.TimedRotatingFileHandler",
+            "filename": "backend.log",
+            "when": "midnight",
+            "interval": 1,
+            "backupCount": 10,
+            "formatter": "full",
+        },
+        "console": {
+            "class": "logging.StreamHandler",
+            "formatter": "full",
+        },
+    },
+    "root": {
+        "handlers": ["console", "file"],
+        "level": "DEBUG" if DEBUG else "WARN",
+    },
+    "loggers": {"django": {}},
+}
+
+import logging.config
+
+logging.config.dictConfig(LOGGING)
+
+# Logger usage
+# logger = logging.getLogger(__name__)
+# logger.warning("")
 
 SITE_ID = 1
 
