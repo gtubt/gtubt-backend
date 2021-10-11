@@ -50,10 +50,7 @@ class NewsService(object):
 
         try:
             News.objects.exclude(id=news.id).get(
-                title=title,
-                body=body,
-                start_date=start_date,
-                end_date=end_date,
+                title=title, body=body, start_date=start_date, end_date=end_date
             )
             raise exceptions.NewsDuplicatedFieldException()
         except News.DoesNotExist:
