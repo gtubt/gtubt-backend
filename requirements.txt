@@ -1,5 +1,6 @@
 black
 Django==3.2.5
+gunicorn==20.1.0
 djangorestframework==3.12.4
 dj-rest-auth[with_social]
 psycopg2-binary==2.9.1

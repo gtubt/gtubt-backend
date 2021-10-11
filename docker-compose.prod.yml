@@ -1,0 +1,26 @@
+version: "3.9"
+
+services:
+  web:
+    build: .
+    command: gunicorn backend.wsgi:application --bind 0.0.0.0:8000
+    volumes:
+      - .:/usr/src/app
+      - /opt/data/:/opt/data/
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    depends_on:
+      - db
+
+  nginx:
+    image: docker.io/bitnami/nginx:1.21
+    ports:
+      - '80:80'
+    volumes:
+      - ./nginx-block.conf:/opt/bitnami/nginx/conf/server_blocks/gtubt-backend.conf:ro
+      - /var/log/gtubt-backend/:/opt/bitnami/nginx/logs/
+      - /opt/data/assets/:/opt/data/assets/
+    depends_on:
+      - web
