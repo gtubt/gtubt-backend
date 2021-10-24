@@ -11,8 +11,7 @@ from app.users.resources.serializers import UserSerializer
 from app.users.service import UserService
 
 
-class AccountViewSet(mixins.DestroyModelMixin,
-                     ReadOnlyModelViewSet):
+class AccountViewSet(mixins.DestroyModelMixin, ReadOnlyModelViewSet):
     serializer_class = UserSerializer
     queryset = User.objects.all()
     permission_classes = [IsAuthenticated]
@@ -25,13 +24,11 @@ class AccountViewSet(mixins.DestroyModelMixin,
         # TODO: to make anonymize??
         self.service.delete_user(instance)
 
-    @action(detail=True, methods=['GET'], url_path='is-email-verified')
+    @action(detail=True, methods=["GET"], url_path="is-email-verified")
     def is_email_verified(self, request, *args, **kwargs):
         user = self.get_object()
         email_address = EmailAddress.objects.get(user.email)
-        context = {
-            "email_verified": email_address.verified
-        }
+        context = {"email_verified": email_address.verified}
         return Response(data=context)
 
 

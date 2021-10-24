@@ -1,5 +1,6 @@
-from allauth.account.views import EmailVerificationSentView as BaseEmailVerificationSentView
-
+from allauth.account.views import (
+    EmailVerificationSentView as BaseEmailVerificationSentView,
+)
 
 
 class EmailVerificationSentView(BaseEmailVerificationSentView):
