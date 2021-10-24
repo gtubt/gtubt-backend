@@ -52,7 +52,6 @@ INSTALLED_APPS = [
     "app.news",
     "app.tickets",
     "app.users",
-    "app.user_account",
 ]
 
 MIDDLEWARE = [

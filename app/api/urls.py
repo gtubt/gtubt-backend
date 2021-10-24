@@ -1,5 +1,4 @@
-from django.urls import include, path, re_path
-from django.views.generic import TemplateView
+from django.urls import include, path
 from rest_framework import routers
 
 from app.events.resources.views import EventViewSet
@@ -15,11 +14,5 @@ router_v1.register(r"news", NewsViewSet)
 
 urlpatterns = [
     path("v1/", include(router_v1.urls)),
-    path("v1/auth/", include("dj_rest_auth.urls")),
-    path("v1/auth/registration/", include("dj_rest_auth.registration.urls")),
-
-    re_path(r"^password-reset/confirm/(?P<uidb64>[0-9]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,48})/$",  # NoQA
-            TemplateView.as_view(template_name="password_reset_confirm.html"),
-            name='password_reset_confirm'),
-    path("v1/auth/allauth/", include("app.user_account.urls")),
+    path("v1/auth/", include("app.auth.urls")),
 ]
