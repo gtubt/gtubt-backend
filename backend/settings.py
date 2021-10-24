@@ -162,7 +162,8 @@ REST_AUTH_REGISTER_SERIALIZERS = {
 }
 
 REST_AUTH_SERIALIZERS = {
-    "USER_DETAILS_SERIALIZER": "app.users.resources.serializers.UserSerializer"
+    "USER_DETAILS_SERIALIZER": "app.users.resources.serializers.UserSerializer",
+    "PASSWORD_RESET_SERIALIZER": "app.auth.resources.serializers.PasswordResetSerializer"  # NoQA
 }
 
 SITE_ID = 1
