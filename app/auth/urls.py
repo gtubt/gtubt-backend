@@ -9,6 +9,7 @@ from django.urls import include, path, re_path
 from django.views.generic import TemplateView
 from rest_auth.views import LogoutView
 
+from app.auth.resources.views import AccountViewSet
 from app.auth.views import EmailVerificationSentView
 
 urlpatterns = [
@@ -28,6 +29,7 @@ urlpatterns = [
         EmailVerificationSentView,
         name="account_email_verification_sent",
     ),
+    path("is-email-verified/", AccountViewSet.as_view({"get": "is_email_verified"})),
     # to send verification email etc.
     # path("", include("allauth.urls")),
     # this url is used to generate email content
