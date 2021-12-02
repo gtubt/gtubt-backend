@@ -1,3 +1,4 @@
+from allauth.account.models import EmailAddress
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 
@@ -23,3 +24,11 @@ class User(AbstractUser, StarterModel):
 
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []
+
+    def save(self, *args, **kwargs):
+        super(User, self).save(*args, **kwargs)
+        try:
+            EmailAddress.objects.get(email__iexact=self.email)
+        except EmailAddress.DoesNotExist:
+            user = User.objects.get(email__iexact=self.email)
+            EmailAddress.objects.create(user=user, email=self.email)
