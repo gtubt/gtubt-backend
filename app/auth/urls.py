@@ -1,5 +1,6 @@
 from dj_rest_auth.views import (
     LoginView,
+    LogoutView,
     PasswordChangeView,
     PasswordResetConfirmView,
     PasswordResetView,
@@ -7,7 +8,6 @@ from dj_rest_auth.views import (
 )
 from django.urls import include, path, re_path
 from django.views.generic import TemplateView
-from rest_auth.views import LogoutView
 
 from app.auth.resources.views import AccountViewSet
 from app.auth.views import EmailVerificationSentView
