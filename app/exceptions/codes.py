@@ -10,3 +10,5 @@ ticket_100_1 = {
     "code": "ticket_100_1",
     "msg": "The user already register for this event. Event is {event_title}",
 }
+
+auth_100_1 = {"code": "auth_100_1", "msg": "User inactive."}

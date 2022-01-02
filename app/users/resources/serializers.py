@@ -1,3 +1,4 @@
+from allauth.account.models import EmailAddress
 from dj_rest_auth.registration.serializers import (
     RegisterSerializer as DefaultRegisterSerializer,
 )
@@ -27,6 +28,12 @@ class UserSerializer(serializers.ModelSerializer):
             "is_accept_kvkk",
             "is_accept_user_agreement",
         ]
+
+    def to_representation(self, instance):
+        data = super(UserSerializer, self).to_representation(instance)
+        email_address = EmailAddress.objects.get(email=data["email"])
+        data.update({"is_email_verified": email_address.verified})
+        return data
 
 
 class RegisterSerializer(DefaultRegisterSerializer):
